@@ -11,3 +11,13 @@ This project demonstrates the construction of a robust data pipeline that migrat
 * **ETL/ELT:** Hevo Data (Logical Replication)
 * **Warehouse:** Snowflake (Multi-cluster, Shared Data Architecture)
 * **Transformation:** dbt Cloud (Transformation & Data modelling)
+
+--------
+
+## 🏗️ Phase 1: PostgreSQL & Docker Environment
+To ensure a clean, isolated environment, I deployed PostgreSQL v17 using Docker.
+
+### Key Implementation Details:
+* **Custom Port Mapping:** Used `5433:5432` to avoid conflicts with existing local PostgreSQL instances.
+* **Security Configuration:** Applied `--security-opt seccomp=unconfined` to resolve macOS "initdb" handshake errors where the system was preventing the "handshake" between the physical CPU and the virtual file.
+* **Version Management:** Used Homebrew to ensure `postgresql@17` was linked as the default client over older versions.
