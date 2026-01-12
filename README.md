@@ -78,3 +78,24 @@ WITH (FORMAT csv, HEADER true, DELIMITER ',');
 COPY raw_payments FROM '/tmp/raw_payments.csv' 
 WITH (FORMAT csv, HEADER true, DELIMITER ',');
 ```
+
+## 🌉 Phase 3: The Connectivity Bridge (ngrok)
+
+A common challenge in modern data stacks is connecting cloud-based ETL tools (like Hevo) to databases running on a local machine behind a firewall or in a container like docker. To solve this, **ngrok** was used to via reverse tunnelling.
+
+### 1. The Purpose of Tunneling
+Because the PostgreSQL database is hosted inside a local Docker container, it lacks a public IP address. By using ngrok, created a secure "bridge" that allows Hevo to "ping" on a public URL, which then safely routes the traffic directly to my local port `5433`.
+
+### 2. Implementation & Terminal Commands
+Using Homebrew, I configured and launched the tunnel to expose the PostgreSQL port:
+
+```bash
+# 1. Install ngrok via Homebrew
+brew install ngrok
+
+# 2. Authenticate the local agent with the cloud service
+ngrok config add-authtoken YOUR_REDACTED_TOKEN
+
+# 3. Start the TCP tunnel on the custom Postgres port
+ngrok tcp 5433
+```
