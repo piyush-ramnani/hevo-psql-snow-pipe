@@ -15,9 +15,8 @@ This project demonstrates the construction of a robust data pipeline that migrat
 --------
 
 ## 🏗️ Phase 1: PostgreSQL & Docker Environment
-To ensure a clean, isolated environment, I deployed PostgreSQL v17 using Docker.
+Deployed latest version of docker, created latest postgres 17 img and containerize the environment. This helps in keeping the environment clean and avoid conflicts on different machines with different configurations as this container has everything a code needs to run.
 
 ### Key Implementation Details:
 * **Custom Port Mapping:** Used `5433:5432` to avoid conflicts with existing local PostgreSQL instances.
 * **Security Configuration:** Applied `--security-opt seccomp=unconfined` to resolve macOS "initdb" handshake errors where the system was preventing the "handshake" between the physical CPU and the virtual file.
-* **Version Management:** Used Homebrew to ensure `postgresql@17` was linked as the default client over older versions.
