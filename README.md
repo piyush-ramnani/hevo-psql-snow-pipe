@@ -28,6 +28,7 @@ docker run --name postgres17-docker \
   -e POSTGRES_PASSWORD=YOUR_PASSWORD_HERE \
   -p 5433:5432 \
   -d postgres:17
+```
 
 ## 📥 Phase 2: Data Loading (Local CSVs to SQL)
 
@@ -61,7 +62,10 @@ CREATE TABLE raw_payments (
     payment_method INT, 
     amount INT
 );
+```
+### 3. Copied the tables into the buckets from the docker `/tmp` file
 
+```sql
 -- Ingesting Customer data
 COPY raw_customers FROM '/tmp/raw_customers.csv' 
 WITH (FORMAT csv, HEADER true, DELIMITER ',');
@@ -73,3 +77,4 @@ WITH (FORMAT csv, HEADER true, DELIMITER ',');
 -- Ingesting Payment data
 COPY raw_payments FROM '/tmp/raw_payments.csv' 
 WITH (FORMAT csv, HEADER true, DELIMITER ',');
+```
