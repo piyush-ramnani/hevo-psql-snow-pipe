@@ -1,5 +1,8 @@
 # PostgreSQL-to-Snowflake Data Pipeline
-### *End-to-End Modern Data Stack Implementation*
+### *End-to-End Data stack Implementation*
+
+## 📸 Project Gallery
+Want to see the pipeline in action? [View the Full Workflow Gallery here](./WORKFLOW_GALLERY.md)
 
 ## 🚀 Project Overview
 This project demonstrates the construction of a robust data pipeline that migrates transactional data from a local, containerized PostgreSQL environment to a Snowflake Cloud Data Warehouse. The pipeline utilizes Change Data Capture (CDC) via Logical Replication, secure tunneling, and dbt (data build tool) for final analytical modeling.
