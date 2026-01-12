@@ -1,1 +1,10 @@
+version: 2
 
+sources:
+  - name: snowgres
+    database: PC_HEVODATA_DB
+    schema: PUBLIC
+    tables:
+      - name: RAW_CUSTOMERS
+      - name: RAW_ORDERS
+      - name: RAW_PAYMENTS
