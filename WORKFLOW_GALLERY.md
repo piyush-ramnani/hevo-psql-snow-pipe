@@ -3,6 +3,10 @@
 *Postgres v17 container is running with custom port 5433.*
 
 ### Phase 3: The Connectivity Bridge (ngrok)
+![ngrok Tunnel](assets/psql_tables.png)
+*Created tables in the PSQL bucket from Snowflake files*
+
+### Phase 3: The Connectivity Bridge (ngrok)
 ![ngrok Tunnel](assets/ngrok_live_tcp.png)
 *The active TCP tunnel providing the public endpoint for hevo pipeline source connection.*
 
