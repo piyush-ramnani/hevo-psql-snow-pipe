@@ -1,6 +1,10 @@
 # PostgreSQL-to-Snowflake Data Pipeline
 ### *End-to-End Data stack Implementation*
 
+WORKSPACE NAME: gmail.com_202
+PIPELINE ID: 1
+TEAM ID: piyush.xavierite24@gmail.com
+
 ## 📸 Project Gallery
 See screenshots here: [View the Full Workflow Gallery here](./WORKFLOW_GALLERY.md)
 
