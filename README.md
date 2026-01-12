@@ -28,3 +28,48 @@ docker run --name postgres17-docker \
   -e POSTGRES_PASSWORD=YOUR_PASSWORD_HERE \
   -p 5433:5432 \
   -d postgres:17
+
+## 📥 Phase 2: Data Loading (Local CSVs to SQL)
+
+This phase involved moving physical data files from the host machine (Mac) into the isolated Docker container environment and ingesting them into the database.
+
+### 1. File Transfer to Container
+To make the raw data accessible to PostgreSQL, I transferred three CSV files (`raw_customers.csv`, `raw_orders.csv`, and `raw_payments.csv`) into the container's `/tmp` folder. 
+* **Method:** Used the Docker Desktop Files UI (alternatively, `docker cp` via CLI can be used).
+* **Best Practice:** Files were placed in `/tmp` to ensure the PostgreSQL process had the necessary read permissions for ingestion.
+
+### 2. Schema Creation
+I defined the "buckets" for the raw data by creating three tables with specific data types to match the source files:
+
+```sql
+CREATE TABLE raw_customers (
+    id INT, 
+    first_name VARCHAR, 
+    last_name VARCHAR
+);
+
+CREATE TABLE raw_orders (
+    id INT, 
+    user_id INT, 
+    order_date DATE, 
+    status VARCHAR
+);
+
+CREATE TABLE raw_payments (
+    id INT, 
+    order_id INT, 
+    payment_method INT, 
+    amount INT
+);
+
+-- Ingesting Customer data
+COPY raw_customers FROM '/tmp/raw_customers.csv' 
+WITH (FORMAT csv, HEADER true, DELIMITER ',');
+
+-- Ingesting Order data
+COPY raw_orders FROM '/tmp/raw_orders.csv' 
+WITH (FORMAT csv, HEADER true, DELIMITER ',');
+
+-- Ingesting Payment data
+COPY raw_payments FROM '/tmp/raw_payments.csv' 
+WITH (FORMAT csv, HEADER true, DELIMITER ',');
