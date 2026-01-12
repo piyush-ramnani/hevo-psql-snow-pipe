@@ -20,3 +20,11 @@ Deployed latest version of docker, created latest postgres 17 img and containeri
 ### Key Implementation Details:
 * **Custom Port Mapping:** Used `5433:5432` to avoid conflicts with existing local PostgreSQL instances.
 * **Security Configuration:** Applied `--security-opt seccomp=unconfined` to resolve macOS "initdb" handshake errors where the system was preventing the "handshake" between the physical CPU and the virtual file.
+
+```bash
+# Command to launch the container
+docker run --name postgres17-docker \
+  --security-opt seccomp=unconfined \
+  -e POSTGRES_PASSWORD=YOUR_PASSWORD_HERE \
+  -p 5433:5432 \
+  -d postgres:17
