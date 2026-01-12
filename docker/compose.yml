@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  database:
+    image: postgres:17
+    container_name: postgres17-docker
+    # Resolved initdb error by allowing unconfined security profile
+    security_opt:
+      - seccomp:unconfined
+    environment:
+      - POSTGRES_PASSWORD={PASSWORD}
+    ports:
+      - "5433:5432" # Maps local port 5433 -> container port 5432
+    restart: always
